@@ -2,6 +2,7 @@
 
 This  data preprocessing techniques on the Netflix dataset to prepare it for machine learning tasks. Based on experimentation and data understanding, the following conclusions were drawn.
 🔹 Missing Value Handling
+
 Among different missing value handling methods (mean, median, and mode), mode-based imputation for categorical features and median-based handling for numerical features were found to work best.
 Most missing values in the dataset were present in categorical columns such as director, cast, and country.
 Filling these values using mode or a constant value ("Unknown") preserved the dataset size and avoided introducing incorrect assumptions.
@@ -12,6 +13,7 @@ For numerical data like release_year, the median is more robust than mean becaus
 Categorical → Mode / "Unknown"
 Numerical → Median
 🔹 Categorical Encoding Techniques
+
 Different encoding techniques performed better depending on the type of categorical feature:
 Label Encoding worked best for binary or low-cardinality features such as type (Movie / TV Show), as it is simple and does not increase dimensionality.
 One-Hot Encoding was effective for nominal features like rating, where no natural order exists, preventing the model from assuming false relationships.
@@ -22,6 +24,7 @@ Target Encoding captured the relationship between categorical values and the tar
 📌 Final Choice:
 Encoding techniques were selected based on feature type, cardinality, and interpretability rather than using a single method for all features.
 🔹 Feature Scaling Methods
+
 Among the scaling techniques applied, Min-Max Scaling was found to be the most effective for this dataset.
 Min-Max Scaling transformed values into a fixed range (0 to 1), making features easier to compare.
 Z-score (Standardization) was useful when handling variations and centering data around zero.
@@ -32,6 +35,7 @@ Max Absolute Scaling and Vector Normalization were demonstrated for completeness
 Min-Max Scaling for simplicity and interpretability
 Z-score Scaling when variance handling is required
 🔹 Outlier Treatment and Skewness Transformation
+
 The numerical feature release_year was analyzed using descriptive statistics.
 No extreme or unrealistic values were found, so outlier removal was not required.
 The distribution of numerical features showed minimal skewness, making log or power transformations unnecessary.
@@ -75,10 +79,11 @@ The performance of the model was evaluated using two standard regression metrics
 * **R² Score**
 MSE measures the average squared difference between actual and predicted values, while R² indicates how well the model explains the variance in the target variable. Lower MSE and an R² value closer to 1 indicate better model performance.
 
-### Model Improvement
+ Model Improvement
 To further improve performance and reduce MSE, additional steps such as **feature scaling using StandardScaler** and **regularization using Ridge Regression** were applied. These techniques helped improve model stability and generalization by reducing the effect of feature scale differences and overfitting.
 ---
-## ✅ Conclusion
+# ✅ Conclusion
+
 The California Housing dataset is well-suited for Linear Regression as the target variable is continuous and several input features show a clear linear relationship with house prices. Through proper data cleaning, encoding of categorical variables, and exploratory data analysis, the dataset was prepared effectively for modeling.
 The Linear Regression model achieved a **reasonable Mean Squared Error and R² score**, indicating that it can explain a significant portion of the variance in house prices. Among all features, **median income** was found to have the strongest positive impact on house values, while geographical features also played an important role.
 Although the model performs well, the relationships in the data are not perfectly linear, and some non-linear patterns exist. Therefore, while Linear Regression serves as a **good baseline model**, more advanced models such as Random Forest or Gradient Boosting could further improve prediction accuracy.
